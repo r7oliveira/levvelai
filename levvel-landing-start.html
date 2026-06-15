@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Levvel AI — Site profissional para seu negócio</title>
+<meta name="description" content="Site profissional com domínio, hospedagem, WhatsApp integrado e suporte. Tudo por R$197/mês.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background-color: #07080D !important;
+    color: #F0F2F5 !important;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  :root {
+    --green: #00E676;
+    --green-dim: #00C45E;
+    --bg: #07080D;
+    --surface: #0F1118;
+    --border: rgba(255,255,255,0.08);
+    --text: #F0F2F5;
+    --muted: #9AA5B4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 16px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    background-color: #07080D;
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 1.2rem;
+    color: #fff !important;
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-cta {
+    background-color: var(--green);
+    color: #07080D !important;
+    font-weight: 700; font-size: 0.85rem;
+    padding: 10px 20px; border-radius: 8px;
+    text-decoration: none;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 110px 5% 70px;
+    background-color: #07080D;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background-color: rgba(0,230,118,0.12);
+    border: 1px solid rgba(0,230,118,0.3);
+    color: var(--green) !important;
+    font-size: 0.75rem; font-weight: 700;
+    padding: 6px 14px; border-radius: 99px;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .hero-badge span {
+    width: 6px; height: 6px;
+    background-color: var(--green);
+    border-radius: 50%; display: inline-block;
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 700; line-height: 1.12;
+    letter-spacing: -1.5px; margin-bottom: 28px;
+    max-width: 780px;
+    color: #FFFFFF !important;
+  }
+  h1 em { font-style: normal; color: var(--green) !important; }
+
+  /* CHECK LIST no hero */
+  .hero-checks {
+    display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 36px; text-align: left;
+  }
+  .hero-check-item {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 1rem; color: #F0F2F5 !important;
+  }
+  .hero-check-item .tick {
+    width: 22px; height: 22px; border-radius: 6px;
+    background-color: rgba(0,230,118,0.15);
+    border: 1.5px solid var(--green);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .hero-check-item .tick svg { width: 12px; height: 12px; }
+
+  .btn-green {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background-color: var(--green); color: #07080D !important;
+    font-weight: 800; font-size: 1rem;
+    padding: 18px 40px; border-radius: 12px;
+    text-decoration: none; margin-bottom: 14px;
+    box-shadow: 0 0 32px rgba(0,230,118,0.25);
+    width: 100%; max-width: 360px;
+  }
+  .hero-note { font-size: 0.8rem; color: #9AA5B4 !important; }
+
+  /* PROOF */
+  /* PROOF */
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-32px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes growBar {
+    from { width: 0; }
+    to   { width: 100%; }
+  }
+  .proof-wrap {
+    background-color: #07080D;
+    padding: 56px 5%;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .proof-bar {
+    display: flex; flex-direction: column; gap: 0;
+    max-width: 520px; margin: 0 auto;
+  }
+  .proof-item {
+    display: flex; align-items: center; gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    opacity: 0;
+    animation: slideIn 0.6s ease forwards;
+  }
+  .proof-item:last-child { border-bottom: none; }
+  .proof-item:nth-child(1) { animation-delay: 0.1s; }
+  .proof-item:nth-child(2) { animation-delay: 0.3s; }
+  .proof-item:nth-child(3) { animation-delay: 0.5s; }
+  .proof-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.4rem; font-weight: 700;
+    color: #00E676 !important;
+    min-width: 120px; letter-spacing: -1px; flex-shrink: 0;
+    text-shadow: 0 0 28px rgba(0,230,118,0.45);
+  }
+  .proof-right { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+  .proof-label { font-size: 0.95rem; color: #F0F2F5 !important; line-height: 1.4; }
+  .proof-bar-line {
+    height: 2px; background-color: rgba(0,230,118,0.15);
+    border-radius: 2px; overflow: hidden; width: 100%;
+  }
+  .proof-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00E676, #00C45E);
+    border-radius: 2px;
+    width: 0;
+    animation: growBar 1.2s ease forwards;
+  }
+  .proof-item:nth-child(1) .proof-bar-fill { animation-delay: 0.3s; }
+  .proof-item:nth-child(2) .proof-bar-fill { animation-delay: 0.5s; }
+  .proof-item:nth-child(3) .proof-bar-fill { animation-delay: 0.7s; }
+
+  /* SECTION */
+  .sec { padding: 80px 5%; max-width: 1000px; margin: 0 auto; background-color: #07080D; }
+  .sec-label {
+    font-size: 0.72rem; font-weight: 700;
+    color: var(--green) !important;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    margin-bottom: 14px; display: block;
+  }
+  .sec-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    font-weight: 700; letter-spacing: -0.8px;
+    line-height: 1.2; margin-bottom: 16px;
+    color: #FFFFFF !important;
+  }
+  .sec-sub { font-size: 1rem; color: #9AA5B4 !important; max-width: 500px; line-height: 1.7; }
+
+  /* PAIN CARDS */
+  .pain-grid {
+    display: flex; flex-direction: column;
+    gap: 16px; margin-top: 44px;
+  }
+  .pain-card {
+    background-color: #0F1118;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-left: 3px solid rgba(255,80,80,0.5);
+    border-radius: 12px; padding: 24px 28px;
+    display: flex; align-items: center; gap: 24px;
+  }
+  .pain-x {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 3.2rem; font-weight: 900;
+    color: #FF4444 !important;
+    text-shadow: 0 0 24px rgba(255,68,68,0.5);
+    line-height: 1; flex-shrink: 0;
+    min-width: 48px; text-align: center;
+  }
+  .pain-content { flex: 1; }
+  .pain-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; color: #FFFFFF !important; }
+  .pain-card p { font-size: 0.86rem; color: #9AA5B4 !important; line-height: 1.6; }
+
+  /* DIVIDER */
+  .divider { width: 100%; height: 1px; background-color: rgba(255,255,255,0.08); max-width: 1000px; margin: 0 auto; }
+  .div-wrap { background-color: #07080D; padding: 0 5%; }
+
+  /* PLAN */
+  .plan-sec {
+    padding: 80px 5%; max-width: 680px;
+    margin: 0 auto; text-align: center;
+    background-color: #07080D;
+  }
+  .plan-card {
+    background-color: #0F1118;
+    border: 1.5px solid var(--green);
+    border-radius: 20px; padding: 44px 40px;
+    margin-top: 48px; position: relative;
+  }
+  .plan-badge {
+    position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+    background-color: var(--green); color: #07080D !important;
+    font-size: 0.7rem; font-weight: 800;
+    padding: 4px 16px; border-radius: 99px;
+    letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap;
+  }
+  .plan-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem; font-weight: 700;
+    color: #9AA5B4 !important;
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;
+  }
+  .plan-price {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3.6rem; font-weight: 700;
+    letter-spacing: -2px; color: #FFFFFF !important;
+    line-height: 1; margin-bottom: 4px;
+  }
+  .plan-price sup { font-size: 1.3rem; vertical-align: top; margin-top: 10px; margin-right: 2px; }
+  .plan-period { font-size: 0.85rem; color: #9AA5B4 !important; margin-bottom: 32px; }
+  .plan-divider { width: 100%; height: 1px; background-color: rgba(255,255,255,0.08); margin-bottom: 28px; }
+
+  /* CHECK LIST no plano */
+  .plan-checks { list-style: none; text-align: left; margin-bottom: 36px; }
+  .plan-checks li {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.95rem; padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: #F0F2F5 !important;
+  }
+  .plan-checks li:last-child { border-bottom: none; }
+  .plan-checks .tick {
+    width: 22px; height: 22px; border-radius: 6px;
+    background-color: rgba(0,230,118,0.15);
+    border: 1.5px solid var(--green);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .plan-checks .tick svg { width: 12px; height: 12px; }
+
+  /* STEPS */
+  .how-sec { padding: 80px 5%; max-width: 1000px; margin: 0 auto; background-color: #07080D; }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; margin-top: 48px; }
+  .step { padding: 24px 20px; text-align: center; background-color: #07080D; }
+  .step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 1.5px solid var(--green);
+    color: var(--green) !important;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 1rem; margin-bottom: 14px;
+  }
+  .step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; color: #FFFFFF !important; }
+  .step p { font-size: 0.84rem; color: #9AA5B4 !important; line-height: 1.6; }
+
+  /* TESTIMONIALS */
+  .test-sec { padding: 80px 5%; max-width: 1000px; margin: 0 auto; background-color: #07080D; }
+  .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 44px; }
+  .test-card { background-color: #0F1118; border: 1px solid var(--border); border-radius: 14px; padding: 26px; }
+  .test-stars { color: var(--green) !important; margin-bottom: 12px; letter-spacing: 2px; font-size: 0.85rem; }
+  .test-text { font-size: 0.9rem; color: #F0F2F5 !important; line-height: 1.65; margin-bottom: 18px; font-style: italic; }
+  .test-author { display: flex; align-items: center; gap: 10px; }
+  .test-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background-color: #07080D;
+    border: 1.5px solid rgba(0,230,118,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.8rem; color: var(--green) !important; flex-shrink: 0;
+  }
+  .test-name { font-weight: 700; font-size: 0.85rem; color: #FFFFFF !important; }
+  .test-role { font-size: 0.75rem; color: #9AA5B4 !important; }
+
+  /* FINAL CTA */
+  .final-sec { padding: 100px 5%; text-align: center; background-color: #07080D; }
+  .final-sec h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 700; letter-spacing: -1px;
+    max-width: 580px; margin: 0 auto 16px; line-height: 1.2;
+    color: #FFFFFF !important;
+  }
+  .final-sec h2 em { font-style: normal; color: var(--green) !important; }
+  .final-sec p { font-size: 1rem; color: #9AA5B4 !important; margin-bottom: 36px; }
+  .final-note { margin-top: 14px; font-size: 0.8rem; color: #9AA5B4 !important; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 5%; text-align: center;
+    font-size: 0.8rem; color: #9AA5B4 !important;
+    background-color: #07080D;
+  }
+
+  /* WA FLOAT */
+  .wa-float {
+    position: fixed; bottom: 24px; right: 24px; z-index: 200;
+    width: 54px; height: 54px; background-color: #25D366;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 1.5rem;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  }
+
+  @media (max-width: 600px) {
+    .btn-green { width: 100%; max-width: 100%; }
+    .plan-card { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+      <polygon points="16,2 30,28 2,28" fill="none" stroke="#00E676" stroke-width="2.5" stroke-linejoin="round"/>
+      <polygon points="16,18 24,28 8,28" fill="#00E676" opacity="0.85"/>
+    </svg>
+    Levvel
+  </a>
+  <a href="https://wa.me/5551996055421?text=Oi!+Quero+saber+mais+sobre+o+Plano+Start" target="_blank" class="nav-cta">Falar com especialista</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span></span> Presença digital profissional</div>
+  <h1>Seu negócio merece um site que <em>trabalha por você</em></h1>
+
+  <div class="hero-checks">
+    <div class="hero-check-item">
+      <div class="tick">
+        <svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#00E676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      Site profissional
+    </div>
+    <div class="hero-check-item">
+      <div class="tick">
+        <svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#00E676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      Domínio .com.br incluído
+    </div>
+    <div class="hero-check-item">
+      <div class="tick">
+        <svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#00E676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      WhatsApp integrado
+    </div>
+    <div class="hero-check-item">
+      <div class="tick">
+        <svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#00E676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      Suporte e alterações mensais
+    </div>
+    <div class="hero-check-item">
+      <div class="tick">
+        <svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#00E676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      Tudo pronto em até 5 dias
+    </div>
+  </div>
+
+  <a href="https://wa.me/5551996055421?text=Oi!+Quero+saber+mais+sobre+o+Plano+Start" target="_blank" class="btn-green">
+    Falar com especialista
+  </a>
+  <p style="font-size:0.88rem;color:#9AA5B4;margin-bottom:14px;max-width:380px;text-align:center;line-height:1.6">Cada site é pensado estrategicamente para o seu negócio — não é um template genérico.</p>
+  <span class="hero-note">Sem contrato · Cancela quando quiser</span>
+</section>
+
+<!-- PROOF -->
+<div class="proof-wrap">
+  <div class="proof-bar">
+    <div class="proof-item">
+      <span class="proof-num">5 dias</span>
+      <div class="proof-right">
+        <span class="proof-label">Seu site no ar</span>
+        <div class="proof-bar-line"><div class="proof-bar-fill" style="animation-duration:1s"></div></div>
+      </div>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">R$197</span>
+      <div class="proof-right">
+        <span class="proof-label">Por mês, tudo incluso</span>
+        <div class="proof-bar-line"><div class="proof-bar-fill" style="animation-duration:1.4s"></div></div>
+      </div>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">100%</span>
+      <div class="proof-right">
+        <span class="proof-label">Sem complicação técnica</span>
+        <div class="proof-bar-line"><div class="proof-bar-fill" style="animation-duration:1.8s"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="div-wrap"><div class="divider"></div></div>
+
+<!-- PROBLEM -->
+<div class="sec">
+  <span class="sec-label">O problema</span>
+  <h2 class="sec-title">Sem site, você perde clientes todo dia</h2>
+  <p class="sec-sub">Quem não aparece no Google simplesmente não existe para o cliente que está procurando.</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-x">✕</div>
+      <div class="pain-content">
+        <h3>Invisível no Google</h3>
+        <p>Seu concorrente aparece na busca. Você não. O cliente vai para ele.</p>
+      </div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-x">✕</div>
+      <div class="pain-content">
+        <h3>Passa insegurança</h3>
+        <p>Só número de celular pessoal faz o cliente desconfiar antes de comprar.</p>
+      </div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-x">✕</div>
+      <div class="pain-content">
+        <h3>Tempo perdido no WhatsApp</h3>
+        <p>Responde as mesmas perguntas repetidas vezes por dia.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="div-wrap"><div class="divider"></div></div>
+
+<!-- PLAN -->
+<div class="plan-sec">
+  <span class="sec-label">Plano</span>
+  <h2 class="sec-title">Simples, completo e sem surpresas</h2>
+  <p class="sec-sub" style="margin:0 auto;text-align:center">Tudo que seu negócio precisa para existir online — num único plano.</p>
+  <div class="plan-card">
+    <div class="plan-badge">Mais assinado</div>
+    <div class="plan-name">Levvel Start</div>
+    <div class="plan-price"><sup>R$</sup>197</div>
+    <div class="plan-period">por mês · sem fidelidade</div>
+    <div class="plan-divider"></div>
+    <p style="font-size:0.84rem;color:#9AA5B4;text-align:left;line-height:1.6;margin-bottom:20px;padding:12px 16px;background:rgba(0,230,118,0.06);border-radius:8px;border-left:3px solid rgba(0,230,118,0.4)">Cada site é pensado estrategicamente para o seu negócio — não usamos templates genéricos.</p>
+    <ul class="plan-checks">
+      <li><div class="tick"><svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#00E676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Site profissional</li>
+      <li><div class="tick"><svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#00E676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Hospedagem incluída</li>
+      <li><div class="tick"><svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#00E676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Domínio .com.br</li>
+      <li><div class="tick"><svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#00E676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div> WhatsApp integrado</li>
+      <li><div class="tick"><svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#00E676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div> SSL (cadeado de segurança)</li>
+      <li><div class="tick"><svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#00E676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Alterações mensais</li>
+      <li><div class="tick"><svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#00E676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Suporte dedicado</li>
+    </ul>
+    <a href="https://wa.me/5551996055421?text=Oi!+Quero+contratar+o+Plano+Start+da+Levvel+AI" target="_blank" class="btn-green" style="display:flex;border-radius:10px;padding:16px;max-width:100%">
+      Falar com especialista
+    </a>
+  </div>
+</div>
+
+<div class="div-wrap"><div class="divider"></div></div>
+
+<!-- HOW -->
+<div class="how-sec">
+  <div style="text-align:center">
+    <span class="sec-label">Como funciona</span>
+    <h2 class="sec-title">Pronto em dias, não em meses</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Você entra em contato</h3>
+      <p>Manda mensagem no WhatsApp e a gente te responde na hora.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>A gente monta tudo</h3>
+      <p>Site, domínio, hospedagem e WhatsApp configurados pela nossa equipe.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Seu site vai ao ar</h3>
+      <p>Em até 5 dias úteis seu negócio já está online e no Google.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Suporte contínuo</h3>
+      <p>Precisa alterar algo? A gente faz por você todo mês sem custo extra.</p>
+    </div>
+  </div>
+</div>
+
+<div class="div-wrap"><div class="divider"></div></div>
+
+<!-- TESTIMONIALS -->
+<div class="test-sec">
+  <div style="text-align:center">
+    <span class="sec-label">Resultados</span>
+    <h2 class="sec-title">O que nossos clientes dizem</h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Em uma semana já tinha clientes chegando pelo Google. Antes ninguém me achava online."</p>
+      <div class="test-author">
+        <div class="test-avatar">CM</div>
+        <div>
+          <div class="test-name">Camila M.</div>
+          <div class="test-role">Esteticista</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Finalmente tenho um site que passa profissionalismo. Os clientes chegam sabendo o que faço."</p>
+      <div class="test-author">
+        <div class="test-avatar">RO</div>
+        <div>
+          <div class="test-name">Rafael O.</div>
+          <div class="test-role">Advogado</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"O investimento voltou no primeiro mês. Um cliente do Google fechou um pedido grande logo de cara."</p>
+      <div class="test-author">
+        <div class="test-avatar">PL</div>
+        <div>
+          <div class="test-name">Patrícia L.</div>
+          <div class="test-role">Confeiteira</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-sec">
+  <h2>Pronto para ter um site que <em>vende por você?</em></h2>
+  <p>Fale agora com um especialista e coloque seu negócio online esta semana.</p>
+  <a href="https://wa.me/5551996055421?text=Oi!+Quero+saber+mais+sobre+o+Plano+Start+da+Levvel+AI" target="_blank" class="btn-green" style="display:inline-flex">
+    Falar com especialista
+  </a>
+  <p class="final-note">R$197/mês · Sem contrato · Cancela quando quiser</p>
+</div>
+
+<footer>
+  <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;">
+    <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
+      <polygon points="16,2 30,28 2,28" fill="none" stroke="#00E676" stroke-width="2.5" stroke-linejoin="round"/>
+      <polygon points="16,18 24,28 8,28" fill="#00E676" opacity="0.85"/>
+    </svg>
+    <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fff">Levvel</span>
+  </div>
+  <p>© 2025 Levvel AI · Todos os direitos reservados · levvelai.com.br</p>
+</footer>
+
+<a href="https://wa.me/5551996055421?text=Oi!+Quero+saber+mais+sobre+o+Plano+Start+da+Levvel+AI" target="_blank" class="wa-float">
+  <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 1C7.716 1 1 7.716 1 16c0 2.628.672 5.1 1.848 7.254L1 31l7.95-1.818A14.94 14.94 0 0016 31c8.284 0 15-6.716 15-15S24.284 1 16 1z" fill="#25D366"/>
+    <path d="M23.07 19.37c-.368-.184-2.175-1.073-2.512-1.196-.337-.122-.582-.184-.827.184-.245.368-.95 1.196-1.164 1.44-.214.245-.429.276-.797.092-.368-.184-1.554-.573-2.96-1.827-1.094-.976-1.833-2.181-2.047-2.549-.214-.368-.023-.567.161-.75.165-.165.368-.429.552-.643.184-.214.245-.368.368-.613.122-.245.061-.46-.031-.643-.092-.184-.827-1.993-1.133-2.73-.299-.717-.602-.62-.827-.631-.214-.01-.46-.012-.705-.012-.245 0-.643.092-.98.46-.337.368-1.287 1.257-1.287 3.065s1.317 3.556 1.5 3.8c.184.245 2.592 3.96 6.284 5.553.878.379 1.564.605 2.099.775.882.281 1.685.241 2.319.146.707-.105 2.175-.889 2.482-1.748.307-.858.307-1.594.214-1.748-.092-.153-.337-.245-.705-.429z" fill="#fff"/>
+  </svg>
+</a>
+
+</body>
+</html>
