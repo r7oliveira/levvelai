@@ -78,6 +78,13 @@
     animation: pulse 1.8s infinite;
   }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-3px); }
+    40% { transform: translateX(3px); }
+    60% { transform: translateX(-2px); }
+    80% { transform: translateX(2px); }
+  }
 
   h1 {
     font-family: 'Space Grotesk', sans-serif;
@@ -108,6 +115,7 @@
   .hero-check-item .tick svg { width: 12px; height: 12px; }
 
   .btn-green {
+    animation: shake 3s ease-in-out infinite;
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
     background-color: var(--green); color: #07080D !important;
     font-weight: 800; font-size: 1rem;
@@ -327,14 +335,15 @@
   /* WA FLOAT */
   .wa-float {
     position: fixed; bottom: 24px; right: 24px; z-index: 200;
-    width: 54px; height: 54px; background-color: #25D366;
+    width: 60px; height: 60px; background-color: #FFFFFF;
     border-radius: 50%; display: flex; align-items: center; justify-content: center;
     text-decoration: none; font-size: 1.5rem;
-    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 2px #00E676, 0 0 0 4px rgba(0,230,118,0.2);
   }
 
   @media (max-width: 600px) {
-    .btn-green { width: 100%; max-width: 100%; }
+    .btn-green {
+    animation: shake 3s ease-in-out infinite; width: 100%; max-width: 100%; }
     .plan-card { padding: 36px 24px; }
   }
 </style>
@@ -394,7 +403,7 @@
     Falar com especialista
   </a>
   <p style="font-size:0.88rem;color:#9AA5B4;margin-bottom:14px;max-width:380px;text-align:center;line-height:1.6">Cada site é pensado estrategicamente para o seu negócio — não é um template genérico.</p>
-  <span class="hero-note">Sem contrato · Cancela quando quiser</span>
+  
 </section>
 
 <!-- PROOF -->
@@ -467,8 +476,8 @@
   <div class="plan-card">
     <div class="plan-badge">Mais assinado</div>
     <div class="plan-name">Levvel Start</div>
-    <div class="plan-price"><sup>R$</sup>197</div>
-    <div class="plan-period">por mês · sem fidelidade</div>
+    <div style="font-size:1rem;color:#9AA5B4;text-decoration:line-through;margin-bottom:4px">R$197/mês</div><div class="plan-price"><sup>R$</sup>47</div>
+    <div class="plan-period">por mês · plano anual</div>
     <div class="plan-divider"></div>
     <p style="font-size:0.84rem;color:#9AA5B4;text-align:left;line-height:1.6;margin-bottom:20px;padding:12px 16px;background:rgba(0,230,118,0.06);border-radius:8px;border-left:3px solid rgba(0,230,118,0.4)">Cada site é pensado estrategicamente para o seu negócio — não usamos templates genéricos.</p>
     <ul class="plan-checks">
@@ -570,7 +579,7 @@
   <a href="https://wa.me/5551996055421?text=Oi!+Quero+saber+mais+sobre+o+Plano+Start+da+Levvel+AI" target="_blank" class="btn-green" style="display:inline-flex">
     Falar com especialista
   </a>
-  <p class="final-note">R$197/mês · Sem contrato · Cancela quando quiser</p>
+  
 </div>
 
 <footer>
