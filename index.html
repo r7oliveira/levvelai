@@ -34,13 +34,15 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 16px 5%;
     display: flex; align-items: center; justify-content: space-between;
-    background-color: #07080D;
-    border-bottom: 1px solid var(--border);
+    background-color: rgba(7,8,13,0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
   .logo {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700; font-size: 1.2rem;
-    color: #fff !important;
+    color: #FFFFFF !important;
     display: flex; align-items: center; gap: 10px;
     text-decoration: none;
   }
